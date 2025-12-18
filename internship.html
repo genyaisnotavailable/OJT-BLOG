@@ -91,11 +91,12 @@
             top: 30px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 1.5em;
+            font-size: 1.2em;
             color: #64ffda;
             text-shadow: 0 0 15px rgba(100, 255, 218, 0.4);
             z-index: 100;
             animation: glow-pulse 2s ease-in-out infinite;
+            white-space: nowrap;
         }
 
         @keyframes glow-pulse {
@@ -104,15 +105,15 @@
         }
 
         .internship-container {
-            max-width: 90%;
+            max-width: 95%;
             margin: 0 auto;
-            padding: 100px 0 60px;
+            padding: 130px 20px 60px;
         }
 
         .carousel-wrapper {
             position: relative;
             padding: 0 10px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .category-carousel {
@@ -133,15 +134,15 @@
         .carousel-dots {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
+            gap: 12px;
+            margin-bottom: 40px;
         }
 
         .dot {
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
-            background: rgba(100, 255, 218, 0.3);
+            background: rgba(100, 255, 218, 0.2);
             border: 2px solid #2a5555;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -150,21 +151,22 @@
         .dot.active {
             background: #64ffda;
             border-color: #64ffda;
-            box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
-        }
-
-        .dot:hover {
-            background: rgba(100, 255, 218, 0.6);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.6);
             transform: scale(1.2);
         }
 
+        .dot:hover {
+            background: rgba(100, 255, 218, 0.5);
+            transform: scale(1.15);
+        }
+
         .category-card {
-            flex: 0 0 calc(33.333% - 10px);
-            min-width: 250px;
+            flex: 0 0 160px;
+            min-width: 160px;
             background: linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(42, 85, 85, 0.3));
             border: 3px solid #2a5555;
-            border-radius: 20px;
-            padding: 30px 20px;
+            border-radius: 15px;
+            padding: 20px 15px;
             cursor: pointer;
             transition: all 0.4s ease;
             text-align: center;
@@ -207,7 +209,7 @@
 
         .category-card:hover {
             border-color: #64ffda;
-            transform: translateY(-10px) scale(1.05);
+            transform: translateY(-8px) scale(1.03);
             box-shadow: 0 15px 40px rgba(100, 255, 218, 0.4);
         }
 
@@ -219,24 +221,24 @@
 
         .category-card.locked {
             cursor: not-allowed;
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
         .category-card.locked:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(100, 255, 218, 0.2);
         }
 
         .category-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
+            font-size: 2.5em;
+            margin-bottom: 12px;
             display: block;
             filter: drop-shadow(0 0 10px rgba(100, 255, 218, 0.3));
             animation: float-icon 3s ease-in-out infinite;
         }
 
         .category-card.locked .category-icon {
-            filter: grayscale(100%) opacity(0.5);
+            filter: grayscale(100%) opacity(0.4);
             animation: none;
         }
 
@@ -246,34 +248,36 @@
         }
 
         .category-title {
-            font-size: 0.7em;
+            font-size: 0.55em;
             color: #64ffda;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            text-shadow: 0 0 8px rgba(100, 255, 218, 0.3);
         }
 
         .category-card.locked .category-title {
-            color: #8affde;
+            color: #5a7575;
+            text-shadow: none;
         }
 
         .category-desc {
-            font-size: 0.45em;
+            font-size: 0.4em;
             color: #8affde;
             line-height: 1.6;
         }
 
         .category-card.locked .category-desc {
-            color: #5a7575;
+            color: #3a4a4a;
         }
 
         .content-showcase {
-            background: linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(42, 85, 85, 0.2));
+            background: linear-gradient(145deg, rgba(26, 26, 26, 0.98), rgba(42, 85, 85, 0.15));
             border: 3px solid #2a5555;
             border-radius: 20px;
-            padding: 50px;
+            padding: 40px;
             position: relative;
             overflow: hidden;
             margin: 0 10px;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
         }
 
         .content-section {
@@ -297,162 +301,156 @@
         }
 
         .content-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
             margin-bottom: 40px;
-            padding-bottom: 25px;
-            border-bottom: 2px solid #2a5555;
+            padding-bottom: 30px;
+            border-bottom: 3px solid rgba(100, 255, 218, 0.2);
         }
 
-        .header-left h2 {
-            font-size: 1.8em;
+        .content-header h2 {
+            font-size: 2em;
             color: #64ffda;
-            margin-bottom: 15px;
-            text-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(100, 255, 218, 0.4);
+            letter-spacing: 2px;
         }
 
         .content-date {
             font-size: 0.5em;
             color: #8affde;
             display: inline-block;
-            padding: 8px 15px;
+            padding: 10px 20px;
             background: rgba(100, 255, 218, 0.1);
             border: 2px solid #64ffda;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
         }
 
         .content-body {
             display: flex;
             gap: 40px;
-            align-items: flex-start;
-            flex-direction: row-reverse;
+            align-items: stretch;
+            flex-direction: row;
+            min-height: 600px;
         }
 
         .content-text {
             flex: 1;
-        }
-
-        .content-image-container {
-            flex: 0 0 350px;
-            position: relative;
-        }
-
-        .content-image {
-            width: 100%;
-            height: 280px;
-            background: linear-gradient(145deg, rgba(100, 255, 218, 0.05), rgba(42, 85, 85, 0.2));
-            border: 3px solid #2a5555;
-            border-radius: 15px;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            font-size: 4em;
-            transition: all 0.3s ease;
-            overflow: hidden;
             position: relative;
-        }
-
-        .content-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-            border-radius: 12px;
-        }
-
-        .content-image:hover {
-            border-color: #64ffda;
-            box-shadow: 0 0 25px rgba(100, 255, 218, 0.3);
-            transform: scale(1.02);
         }
 
         .content-description {
             font-size: 0.55em;
             color: #b8e6d5;
-            line-height: 2.2;
-            margin-bottom: 30px;
-        }
-
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .highlight-box {
-            background: linear-gradient(145deg, rgba(100, 255, 218, 0.05), rgba(42, 85, 85, 0.2));
-            border: 2px solid #2a5555;
-            border-radius: 12px;
+            line-height: 2.4;
+            text-align: justify;
+            letter-spacing: 0.5px;
             padding: 20px;
-            transition: all 0.3s ease;
-            text-align: center;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.03), transparent);
+            border-left: 3px solid rgba(100, 255, 218, 0.3);
+            border-radius: 10px;
         }
 
-        .highlight-box:hover {
-            border-color: #64ffda;
-            background: rgba(100, 255, 218, 0.1);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(100, 255, 218, 0.3);
+        .content-image-container {
+            flex: 0 0 500px;
+            position: relative;
+            display: flex;
+            align-items: stretch;
         }
 
-        .highlight-icon {
-            font-size: 2em;
-            margin-bottom: 12px;
+        .content-image {
+            width: 100%;
+            height: 100%;
+            min-height: 600px;
+            background: linear-gradient(145deg, rgba(100, 255, 218, 0.05), rgba(42, 85, 85, 0.2));
+            border: 3px solid #2a5555;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5em;
+            transition: all 0.4s ease;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .content-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .content-image:hover::before {
+            opacity: 1;
+        }
+
+        .content-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
+            border-radius: 17px;
+            transition: transform 0.4s ease;
         }
 
-        .highlight-title {
-            font-size: 0.5em;
-            color: #64ffda;
-            margin-bottom: 8px;
-        }
-
-        .highlight-text {
-            font-size: 0.45em;
-            color: #8affde;
-            line-height: 1.8;
-        }
-
-        .week-box {
-            background: linear-gradient(145deg, rgba(100, 255, 218, 0.05), rgba(42, 85, 85, 0.2));
-            border: 2px solid #2a5555;
-            border-radius: 12px;
-            padding: 20px;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-        }
-
-        .week-box:hover {
+        .content-image:hover {
             border-color: #64ffda;
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(100, 255, 218, 0.2);
+            box-shadow: 0 0 40px rgba(100, 255, 218, 0.4), inset 0 0 50px rgba(0, 0, 0, 0.3);
+            transform: scale(1.01);
         }
 
-        .week-title {
-            font-size: 0.6em;
-            color: #64ffda;
-            margin-bottom: 12px;
+        .content-image:hover img {
+            transform: scale(1.02);
         }
 
-        .week-content {
-            font-size: 0.45em;
-            color: #b8e6d5;
-            line-height: 2;
+        @media (max-width: 1400px) {
+            .content-body {
+                min-height: 550px;
+            }
+
+            .content-image {
+                min-height: 550px;
+            }
+
+            .content-image-container {
+                flex: 0 0 450px;
+            }
         }
 
         @media (max-width: 1024px) {
             .content-body {
-                flex-direction: column-reverse;
+                flex-direction: column;
+                min-height: auto;
+                gap: 30px;
+            }
+
+            .content-text {
+                flex: 1;
+            }
+
+            .content-description {
+                border-left: none;
+                border-top: 3px solid rgba(100, 255, 218, 0.3);
+                background: linear-gradient(180deg, rgba(100, 255, 218, 0.03), transparent);
             }
 
             .content-image-container {
                 flex: 1;
                 width: 100%;
-                max-width: 400px;
-                margin: 0 auto;
+            }
+
+            .content-image {
+                height: 450px;
+                min-height: 450px;
             }
 
             .page-title {
@@ -460,49 +458,103 @@
             }
 
             .category-card {
-                flex: 0 0 calc(50% - 7.5px);
-                min-width: 200px;
+                flex: 0 0 150px;
+                min-width: 150px;
+            }
+
+            .content-header h2 {
+                font-size: 1.6em;
             }
         }
 
         @media (max-width: 768px) {
             .back-button {
-                top: 15px;
-                left: 15px;
-                padding: 10px 15px;
-                font-size: 0.5em;
+                top: 20px;
+                left: 20px;
+                padding: 12px 20px;
+                font-size: 0.55em;
             }
 
             .page-title {
-                top: 15px;
-                font-size: 0.8em;
+                top: 20px;
+                font-size: 0.75em;
             }
 
             .internship-container {
-                padding: 100px 0 40px;
+                padding: 120px 15px 40px;
+                max-width: 100%;
             }
 
             .content-showcase {
-                padding: 30px 15px;
+                padding: 25px 20px;
                 margin: 0 5px;
             }
 
-            .header-left h2 {
+            .content-header h2 {
                 font-size: 1.3em;
             }
 
+            .content-date {
+                font-size: 0.45em;
+                padding: 8px 15px;
+            }
+
             .content-image {
-                height: 220px;
-                font-size: 3em;
+                height: 350px;
+                min-height: 350px;
+                font-size: 3.5em;
             }
 
             .category-card {
-                flex: 0 0 calc(100% - 10px);
-                min-width: 180px;
+                flex: 0 0 140px;
+                min-width: 140px;
             }
 
-            .content-image-container {
-                flex: 0 0 100%;
+            .category-icon {
+                font-size: 2em;
+            }
+
+            .content-body {
+                gap: 25px;
+            }
+
+            .carousel-dots {
+                gap: 8px;
+                margin-bottom: 30px;
+            }
+
+            .dot {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 0.7em;
+            }
+
+            .content-header h2 {
+                font-size: 1.1em;
+            }
+
+            .content-image {
+                height: 280px;
+                min-height: 280px;
+            }
+
+            .category-card {
+                flex: 0 0 120px;
+                min-width: 120px;
+                padding: 15px 10px;
+            }
+
+            .category-title {
+                font-size: 0.5em;
+            }
+
+            .category-desc {
+                font-size: 0.35em;
             }
         }
     </style>
@@ -535,13 +587,13 @@
                 <div class="category-card" onclick="showContent('preparation', this, 1)">
                     <span class="category-icon">🎯</span>
                     <div class="category-title">PREPARATION</div>
-                    <div class="category-desc">Pre-internship activities</div>
+                    <div class="category-desc">Pre-internship</div>
                 </div>
 
                 <div class="category-card" onclick="showContent('resume', this, 2)">
                     <span class="category-icon">📄</span>
                     <div class="category-title">RESUME</div>
-                    <div class="category-desc">Preparing Internship Documents</div>
+                    <div class="category-desc">Documents prep</div>
                 </div>
 
                 <div class="category-card locked">
@@ -584,16 +636,15 @@
             <span class="dot" onclick="scrollToCard(4)"></span>
             <span class="dot" onclick="scrollToCard(5)"></span>
             <span class="dot" onclick="scrollToCard(6)"></span>
+            <span class="dot" onclick="scrollToCard(7)"></span>
         </div>
 
         <div class="content-showcase">
             <!-- ENROLLMENT CONTENT -->
             <div id="enrollment" class="content-section active">
                 <div class="content-header">
-                    <div class="header-left">
-                        <h2>OJT ENROLLMENT</h2>
-                        <span class="content-date">NOVEMBER 28, 2025</span>
-                    </div>
+                    <h2>OJT ENROLLMENT</h2>
+                    <span class="content-date">NOVEMBER 28, 2025</span>
                 </div>
                 <div class="content-body">
                     <div class="content-text">
@@ -612,10 +663,8 @@
             <!-- PREPARATION CONTENT -->
             <div id="preparation" class="content-section">
                 <div class="content-header">
-                    <div class="header-left">
-                        <h2>PRE-INTERNSHIP PREP</h2>
-                        <span class="content-date">PREPARATION PHASE</span>
-                    </div>
+                    <h2>PRE-INTERNSHIP PREP</h2>
+                    <span class="content-date">DECEMBER 05, 2025</span>
                 </div>
                 <div class="content-body">
                     <div class="content-text">
@@ -634,61 +683,47 @@
             <!-- RESUME CONTENT -->
             <div id="resume" class="content-section">
                 <div class="content-header">
-                    <div class="header-left">
-                        <h2>RESUME</h2>
-                        <span class="content-date">PREPARATION PHASE</span>
-                    </div>
+                    <h2>RESUME PREPARATION</h2>
+                    <span class="content-date">PREPARATION PHASE</span>
                 </div>
                 <div class="content-body">
                     <div class="content-text">
                         <p class="content-description">
-                             Resume preparation was a crucial step in my internship journey. I dedicated time to crafting a professional resume that highlighted my skills, experiences, and academic achievements. This document served as my first impression to potential employers and was essential for securing internship opportunities.
+                            Resume preparation was a crucial step in my internship journey. I dedicated time to crafting a professional resume that highlighted my skills, experiences, and academic achievements. This document served as my first impression to potential employers and was essential for securing internship opportunities.
                         </p>
                     </div>
                     <div class="content-image-container">
                         <div class="content-image">
-                            <img src="images/myresume.jpg" alt="Preparation Phase" onerror="this.parentElement.innerHTML='📚'">
+                            <img src="images/myresume.jpg" alt="Resume" onerror="this.parentElement.innerHTML='📄'">
                         </div>
                     </div>
                 </div>
             </div>
-
-
-            
         </div>
     </div>
 
     <script>
         function showContent(sectionId, element, index) {
-            // Check if card is locked
             if (element.classList.contains('locked')) {
                 return;
             }
 
-            // Hide all sections
             const sections = document.querySelectorAll('.content-section');
             sections.forEach(section => section.classList.remove('active'));
 
-            // Remove active from all cards
             const cards = document.querySelectorAll('.category-card');
             cards.forEach(card => card.classList.remove('active'));
 
-            // Remove active from all dots
             const dots = document.querySelectorAll('.dot');
             dots.forEach(dot => dot.classList.remove('active'));
 
-            // Show selected section
             document.getElementById(sectionId).classList.add('active');
-
-            // Add active to clicked card
             element.classList.add('active');
 
-            // Add active to corresponding dot
             if (index !== undefined) {
                 dots[index].classList.add('active');
             }
 
-            // Scroll card into view
             element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
 
@@ -708,12 +743,10 @@
                     behavior: 'smooth'
                 });
 
-                // Trigger the card click
                 card.click();
             }
         }
 
-        // Update dots on scroll
         const carousel = document.getElementById('carousel');
         carousel.addEventListener('scroll', () => {
             const cards = document.querySelectorAll('.category-card');
