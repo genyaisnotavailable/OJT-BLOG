@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My OJT Journey - Path Selection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .pixel-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .pixel {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(100, 255, 218, 0.1);
+            animation: float 20s infinite;
+        }
+
+        .pixel:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .pixel:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .pixel:nth-child(3) { left: 30%; animation-delay: 4s; }
+        .pixel:nth-child(4) { left: 40%; animation-delay: 1s; }
+        .pixel:nth-child(5) { left: 50%; animation-delay: 3s; }
+        .pixel:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .pixel:nth-child(7) { left: 70%; animation-delay: 2s; }
+        .pixel:nth-child(8) { left: 80%; animation-delay: 4s; }
+        .pixel:nth-child(9) { left: 90%; animation-delay: 1s; }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .path-selection {
+            min-height: 100vh;
+            padding: 40px 20px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: transparent;
+            border: 3px solid #64ffda;
+            color: #64ffda;
+            padding: 15px 25px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-button:hover {
+            background: rgba(100, 255, 218, 0.1);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+        }
+
+        .path-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .profile-section {
+            flex: 0 0 300px;
+            background: rgba(26, 26, 26, 0.9);
+            border: 4px solid #2a5555;
+            padding: 55px;
+            text-align: center;
+            position: sticky;
+            top: 100px;
+        }
+
+        .profile-image-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border: 4px solid #64ffda;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.3), inset 0 0 20px rgba(100, 255, 218, 0.1);
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 0.9em;
+            color: #64ffda;
+            margin-bottom: 12px;
+            text-shadow: 0 0 10px rgba(100, 255, 218, 0.4);
+        }
+
+        .profile-role {
+            font-size: 0.5em;
+            color: #8affde;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .profile-stats {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #2a5555;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.45em;
+            color: #b8e6d5;
+        }
+
+        .stat-label {
+            color: #8affde;
+        }
+
+        .stat-value {
+            color: #64ffda;
+        }
+
+        .categories-section {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .path-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .path-title {
+            font-size: 2em;
+            color: #64ffda;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0px #0a0a0a, 0 0 15px rgba(100, 255, 218, 0.4);
+        }
+
+        .path-subtitle {
+            font-size: 0.6em;
+            color: #8affde;
+            line-height: 1.8;
+        }
+
+        .path-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .path-card {
+            background: rgba(26, 26, 26, 0.8);
+            border: 3px solid #2a5555;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            text-decoration: none;
+            display: block;
+        }
+
+        .path-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #64ffda;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .path-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .path-card:hover {
+            border-color: #64ffda;
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+        }
+
+        .path-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .path-card-title {
+            font-size: 0.9em;
+            color: #64ffda;
+            margin-bottom: 15px;
+        }
+
+        .path-card-desc {
+            font-size: 0.5em;
+            color: #8affde;
+            line-height: 1.8;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .path-container {
+                flex-direction: column;
+            }
+
+            .profile-section {
+                position: relative;
+                flex: 1;
+                width: 100%;
+                max-width: 350px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .path-title {
+                font-size: 1.3em;
+            }
+
+            .back-button {
+                top: 15px;
+                left: 15px;
+                padding: 10px 15px;
+                font-size: 0.5em;
+            }
+
+            .profile-section {
+                flex: 1;
+                width: 100%;
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pixel-bg">
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+    </div>
+
+    <div class="path-selection">
+        <a href="main.html" class="back-button">← BACK</a>
+        
+        <div class="path-container">
+           
+
+            <div class="categories-section">
+                <div class="path-header">
+                    <h2 class="path-title">CHOOSE YOUR PATH</h2>
+                    <p class="path-subtitle">Select a category to explore</p>
+                </div>
+
+                <div class="path-grid">
+                    <a href="establishment.html" class="path-card">
+                        <div class="path-icon">🏢</div>
+                        <h3 class="path-card-title">OJT ESTABLISHMENT</h3>
+                        <p class="path-card-desc">Weekly progress at the company</p>
+                    </a>
+
+                    <a href="internship.html" class="path-card">
+                        <div class="path-icon">💼</div>
+                        <h3 class="path-card-title">INTERNSHIP</h3>
+                        <p class="path-card-desc">Daily experiences</p>
+                    </a>
+
+                    <a href="research.html" class="path-card">
+                        <div class="path-icon">🔬</div>
+                        <h3 class="path-card-title">MY RESEARCH</h3>
+                        <p class="path-card-desc">Research festival</p>
+                    </a>
+
+                    <a href="projects.html" class="path-card">
+                        <div class="path-icon">💻</div>
+                        <h3 class="path-card-title">MY PROJECTS</h3>
+                        <p class="path-card-desc">Showcase of work</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
