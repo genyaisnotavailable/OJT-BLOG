@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My OJT Journey - Path Selection</title>
+    <title>My OJT Journey - Quest Selection</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         * {
@@ -20,6 +20,7 @@
             overflow-x: hidden;
         }
 
+        /* Animated Pixel Background */
         .pixel-bg {
             position: fixed;
             top: 0;
@@ -28,6 +29,7 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
         }
 
         .pixel {
@@ -48,6 +50,22 @@
         .pixel:nth-child(8) { left: 80%; animation-delay: 4s; }
         .pixel:nth-child(9) { left: 90%; animation-delay: 1s; }
 
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #64ffda;
+            box-shadow: 0 0 10px #64ffda;
+            animation: particle-float 15s infinite;
+        }
+
+        .particle:nth-child(10) { left: 15%; animation-delay: 1s; }
+        .particle:nth-child(11) { left: 35%; animation-delay: 3s; }
+        .particle:nth-child(12) { left: 55%; animation-delay: 2s; }
+        .particle:nth-child(13) { left: 75%; animation-delay: 4s; }
+        .particle:nth-child(14) { left: 85%; animation-delay: 0s; }
+
         @keyframes float {
             0% {
                 transform: translateY(100vh) rotate(0deg);
@@ -61,17 +79,25 @@
             }
         }
 
-        .path-selection {
-            min-height: 100vh;
-            padding: 40px 20px;
-            animation: fadeIn 0.8s ease;
+        @keyframes particle-float {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
         }
 
+        /* Back Button */
         .back-button {
             position: fixed;
             top: 30px;
             left: 30px;
-            background: transparent;
+            background: rgba(26, 26, 26, 0.9);
             border: 3px solid #64ffda;
             color: #64ffda;
             padding: 15px 25px;
@@ -82,167 +108,291 @@
             z-index: 100;
             text-decoration: none;
             display: inline-block;
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
         }
 
         .back-button:hover {
-            background: rgba(100, 255, 218, 0.1);
-            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+            background: rgba(100, 255, 218, 0.2);
+            box-shadow: 0 0 30px rgba(100, 255, 218, 0.5);
+            transform: scale(1.05);
         }
 
-        .path-container {
+        /* Main Container */
+        .journey-container {
             max-width: 1400px;
             margin: 0 auto;
-            display: flex;
-            gap: 40px;
-            align-items: flex-start;
-            flex-wrap: wrap;
+            padding: 120px 20px 60px;
         }
 
-        .profile-section {
-            flex: 0 0 300px;
-            background: rgba(26, 26, 26, 0.9);
-            border: 4px solid #2a5555;
-            padding: 55px;
+        /* Header Section */
+        .journey-header {
             text-align: center;
-            position: sticky;
-            top: 100px;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease;
         }
 
-        .profile-image-container {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 20px;
-            border: 4px solid #64ffda;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(100, 255, 218, 0.3), inset 0 0 20px rgba(100, 255, 218, 0.1);
-        }
-
-        .profile-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-name {
-            font-size: 0.9em;
+        .game-title {
+            font-size: 2.5em;
             color: #64ffda;
-            margin-bottom: 12px;
-            text-shadow: 0 0 10px rgba(100, 255, 218, 0.4);
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 0px #0a0a0a, 0 0 20px rgba(100, 255, 218, 0.5);
+            animation: glow-pulse 2s ease-in-out infinite;
         }
 
-        .profile-role {
-            font-size: 0.5em;
+        @keyframes glow-pulse {
+            0%, 100% { text-shadow: 4px 4px 0px #0a0a0a, 0 0 20px rgba(100, 255, 218, 0.5); }
+            50% { text-shadow: 4px 4px 0px #0a0a0a, 0 0 30px rgba(100, 255, 218, 0.8); }
+        }
+
+        .game-subtitle {
+            font-size: 0.7em;
             color: #8affde;
-            margin-bottom: 15px;
             line-height: 1.8;
+            margin-bottom: 30px;
         }
 
-        .profile-stats {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 2px solid #2a5555;
-        }
-
-        .stat-item {
+        /* Stats Bar */
+        .stats-bar {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            font-size: 0.45em;
-            color: #b8e6d5;
-        }
-
-        .stat-label {
-            color: #8affde;
-        }
-
-        .stat-value {
-            color: #64ffda;
-        }
-
-        .categories-section {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .path-header {
-            text-align: center;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
             margin-bottom: 40px;
         }
 
-        .path-title {
-            font-size: 2em;
-            color: #64ffda;
-            margin-bottom: 20px;
-            text-shadow: 3px 3px 0px #0a0a0a, 0 0 15px rgba(100, 255, 218, 0.4);
-        }
-
-        .path-subtitle {
-            font-size: 0.6em;
-            color: #8affde;
-            line-height: 1.8;
-        }
-
-        .path-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .path-card {
-            background: rgba(26, 26, 26, 0.8);
+        .stat-box {
+            background: rgba(26, 26, 26, 0.9);
             border: 3px solid #2a5555;
-            padding: 30px;
-            text-align: center;
-            cursor: pointer;
+            border-radius: 15px;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
             transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.2);
+        }
+
+        .stat-box:hover {
+            border-color: #64ffda;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(100, 255, 218, 0.4);
+        }
+
+        .stat-icon {
+            font-size: 2em;
+        }
+
+        .stat-info {
+            text-align: left;
+        }
+
+        .stat-label {
+            font-size: 0.4em;
+            color: #8affde;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 0.6em;
+            color: #64ffda;
+        }
+
+        /* Quest Cards Grid */
+        .quest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            animation: fadeInUp 1s ease;
+        }
+
+        /* Quest Card */
+        .quest-card {
+            background: linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(42, 85, 85, 0.3));
+            border: 3px solid #2a5555;
+            border-radius: 20px;
+            padding: 35px 25px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-align: center;
             position: relative;
+            overflow: hidden;
             text-decoration: none;
             display: block;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
         }
 
-        .path-card::after {
+        .quest-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .quest-card:hover::before {
+            left: 100%;
+        }
+
+        .quest-card::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 4px;
-            background: #64ffda;
+            background: linear-gradient(90deg, #64ffda, #8affde, #64ffda);
             transform: scaleX(0);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
 
-        .path-card:hover::after {
+        .quest-card:hover::after {
             transform: scaleX(1);
         }
 
-        .path-card:hover {
+        .quest-card:hover {
             border-color: #64ffda;
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.4);
+            background: linear-gradient(145deg, rgba(100, 255, 218, 0.15), rgba(42, 85, 85, 0.5));
         }
 
-        .path-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
+        /* Quest Badge */
+        .quest-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(100, 255, 218, 0.2);
+            border: 2px solid #64ffda;
+            border-radius: 8px;
+            padding: 5px 12px;
+            font-size: 0.4em;
+            color: #64ffda;
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
         }
 
-        .path-card-title {
-            font-size: 0.9em;
+        .quest-badge.locked {
+            background: rgba(42, 85, 85, 0.3);
+            border-color: #2a5555;
+            color: #8affde;
+        }
+
+        /* Quest Icon Container */
+        .quest-icon-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            background: rgba(100, 255, 218, 0.05);
+            border: 3px solid #2a5555;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .quest-card:hover .quest-icon-container {
+            border-color: #64ffda;
+            background: rgba(100, 255, 218, 0.1);
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        .quest-icon {
+            font-size: 3.5em;
+            filter: drop-shadow(0 0 15px rgba(100, 255, 218, 0.4));
+            animation: float-icon 3s ease-in-out infinite;
+        }
+
+        .quest-card.locked .quest-icon {
+            filter: grayscale(100%) opacity(0.5);
+        }
+
+        @keyframes float-icon {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Quest Content */
+        .quest-title {
+            font-size: 0.85em;
             color: #64ffda;
             margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
         }
 
-        .path-card-desc {
+        .quest-card.locked .quest-title {
+            color: #8affde;
+        }
+
+        .quest-description {
             font-size: 0.5em;
             color: #8affde;
             line-height: 1.8;
+            margin-bottom: 20px;
         }
 
-        @keyframes fadeIn {
+        .quest-card.locked .quest-description {
+            color: #5a7575;
+        }
+
+        /* Quest Progress Bar */
+        .quest-progress {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #2a5555;
+        }
+
+        .progress-label {
+            font-size: 0.45em;
+            color: #8affde;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 12px;
+            background: rgba(42, 85, 85, 0.5);
+            border: 2px solid #2a5555;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #64ffda, #8affde);
+            border-radius: 4px;
+            transition: width 1s ease;
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+            animation: progress-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes progress-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(100, 255, 218, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(100, 255, 218, 0.8); }
+        }
+
+        /* Locked state */
+        .quest-card.locked {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .quest-card.locked:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(100, 255, 218, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(-30px);
             }
             to {
                 opacity: 1;
@@ -250,25 +400,30 @@
             }
         }
 
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
         @media (max-width: 1024px) {
-            .path-container {
-                flex-direction: column;
+            .game-title {
+                font-size: 2em;
             }
 
-            .profile-section {
-                position: relative;
-                flex: 1;
-                width: 100%;
-                max-width: 350px;
-                margin: 0 auto;
+            .quest-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 25px;
             }
         }
 
         @media (max-width: 768px) {
-            .path-title {
-                font-size: 1.3em;
-            }
-
             .back-button {
                 top: 15px;
                 left: 15px;
@@ -276,10 +431,53 @@
                 font-size: 0.5em;
             }
 
-            .profile-section {
-                flex: 1;
-                width: 100%;
-                padding: 30px;
+            .journey-container {
+                padding: 100px 15px 40px;
+            }
+
+            .game-title {
+                font-size: 1.5em;
+            }
+
+            .game-subtitle {
+                font-size: 0.6em;
+            }
+
+            .stats-bar {
+                gap: 15px;
+            }
+
+            .stat-box {
+                padding: 12px 20px;
+                gap: 10px;
+            }
+
+            .stat-icon {
+                font-size: 1.5em;
+            }
+
+            .quest-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .quest-icon-container {
+                width: 100px;
+                height: 100px;
+            }
+
+            .quest-icon {
+                font-size: 3em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .game-title {
+                font-size: 1.2em;
+            }
+
+            .quest-card {
+                padding: 25px 20px;
             }
         }
     </style>
@@ -295,47 +493,185 @@
         <div class="pixel"></div>
         <div class="pixel"></div>
         <div class="pixel"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
     </div>
 
-    <div class="path-selection">
-        <a href="main.html" class="back-button">← BACK</a>
-        
-        <div class="path-container">
-           
+    <a href="index.html" class="back-button">← MAIN MENU</a>
 
-            <div class="categories-section">
-                <div class="path-header">
-                    <h2 class="path-title">CHOOSE YOUR PATH</h2>
-                    <p class="path-subtitle">Select a category to explore</p>
+    <div class="journey-container">
+        <div class="journey-header">
+            <h1 class="game-title">SELECT YOUR QUEST</h1>
+            <p class="game-subtitle">Choose a path to explore your OJT journey</p>
+            
+            <div class="stats-bar">
+                <div class="stat-box">
+                    <span class="stat-icon">⚡</span>
+                    <div class="stat-info">
+                        <div class="stat-label">LEVEL</div>
+                        <div class="stat-value">INTERN</div>
+                    </div>
                 </div>
-
-                <div class="path-grid">
-                    <a href="establishment.html" class="path-card">
-                        <div class="path-icon">🏢</div>
-                        <h3 class="path-card-title">OJT ESTABLISHMENT</h3>
-                        <p class="path-card-desc">Weekly progress at the company</p>
-                    </a>
-
-                    <a href="internship.html" class="path-card">
-                        <div class="path-icon">💼</div>
-                        <h3 class="path-card-title">INTERNSHIP</h3>
-                        <p class="path-card-desc">Daily experiences</p>
-                    </a>
-
-                    <a href="research.html" class="path-card">
-                        <div class="path-icon">🔬</div>
-                        <h3 class="path-card-title">MY RESEARCH</h3>
-                        <p class="path-card-desc">Research festival</p>
-                    </a>
-
-                    <a href="projects.html" class="path-card">
-                        <div class="path-icon">💻</div>
-                        <h3 class="path-card-title">MY PROJECTS</h3>
-                        <p class="path-card-desc">Showcase of work</p>
-                    </a>
+                <div class="stat-box">
+                    <span class="stat-icon">🎯</span>
+                    <div class="stat-info">
+                        <div class="stat-label">QUESTS</div>
+                        <div class="stat-value">1/4</div>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-icon">⭐</span>
+                    <div class="stat-info">
+                        <div class="stat-label">XP</div>
+                        <div class="stat-value">250</div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="quest-grid">
+            <a href="establishment.html" class="quest-card locked" onclick="return false;">
+                <span class="quest-badge locked">LOCKED</span>
+                <div class="quest-icon-container">
+                    <div class="quest-icon">🏢</div>
+                </div>
+                <h3 class="quest-title">ESTABLISHMENT</h3>
+                <p class="quest-description">
+                    Coming soon - Information about the OJT establishment awaits
+                </p>
+                <div class="quest-progress">
+                    <div class="progress-label">
+                        <span>PROGRESS</span>
+                        <span>0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="internship.html" class="quest-card">
+                <span class="quest-badge">IN PROGRESS</span>
+                <div class="quest-icon-container">
+                    <div class="quest-icon">💼</div>
+                </div>
+                <h3 class="quest-title">INTERNSHIP</h3>
+                <p class="quest-description">
+                    Follow my journey through enrollment and preparation phases
+                </p>
+                <div class="quest-progress">
+                    <div class="progress-label">
+                        <span>PROGRESS</span>
+                        <span>20%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 20%;"></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="research.html" class="quest-card locked" onclick="return false;">
+                <span class="quest-badge locked">LOCKED</span>
+                <div class="quest-icon-container">
+                    <div class="quest-icon">🔬</div>
+                </div>
+                <h3 class="quest-title">RESEARCH</h3>
+                <p class="quest-description">
+                    Coming soon - Research project details will be revealed
+                </p>
+                <div class="quest-progress">
+                    <div class="progress-label">
+                        <span>PROGRESS</span>
+                        <span>0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="projects.html" class="quest-card locked" onclick="return false;">
+                <span class="quest-badge locked">LOCKED</span>
+                <div class="quest-icon-container">
+                    <div class="quest-icon">💻</div>
+                </div>
+                <h3 class="quest-title">PROJECTS</h3>
+                <p class="quest-description">
+                    Coming soon - Project portfolio will be showcased here
+                </p>
+                <div class="quest-progress">
+                    <div class="progress-label">
+                        <span>PROGRESS</span>
+                        <span>0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
+
+    <script>
+        // Add entrance animation to cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.quest-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+
+            // Animate progress bars on load
+            setTimeout(() => {
+                const progressBars = document.querySelectorAll('.progress-bar');
+                progressBars.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 100);
+                });
+            }, 800);
+        });
+
+        // Add click effect only for unlocked cards
+        const cards = document.querySelectorAll('.quest-card:not(.locked)');
+        cards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Create ripple effect
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.background = 'rgba(100, 255, 218, 0.6)';
+                ripple.style.borderRadius = '50%';
+                ripple.style.pointerEvents = 'none';
+                ripple.style.left = e.offsetX + 'px';
+                ripple.style.top = e.offsetY + 'px';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+                ripple.style.opacity = '1';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.style.transform = 'scale(20)';
+                    ripple.style.opacity = '0';
+                }, 10);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    </script>
 </body>
 </html>
